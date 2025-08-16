@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Programático 2025-2027: Chris C. y Nathalia S. - Representación Estudiantil Diseño Industrial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Custom Blue/Red Gradient with Glassmorphism -->
+    <!-- Application Structure Plan: The SPA retains its successful single-page narrative flow but with a significant UI/UX overhaul. The structure remains: Team Intro -> Core Vision -> Strategic Pillars. This linear path is intuitive for a political platform. The main change is the visual presentation. Glassmorphism is used on all content cards to create a modern, layered look over a dynamic gradient background. Scroll-triggered animations are added to make the experience more engaging and guide the user's focus through the content sequentially. This structure was chosen to combine narrative clarity with a high-impact, modern visual aesthetic suitable for a design-focused audience. -->
+    <!-- Visualization & Content Choices: 
+        - Team Intro: Goal: Inform. Method: Animated Glassmorphism HTML cards. Interaction: Scroll-reveal. Justification: Modern introduction to candidates. NO SVG/Mermaid.
+        - Vision Section: Goal: Inform. Method: Animated Glassmorphism HTML cards with Unicode icons. Interaction: Scroll-reveal. Justification: Highlights core values with a clean, modern aesthetic. NO SVG/Mermaid.
+        - Platform Focus Chart: Goal: Compare. Viz: Donut Chart. Interaction: Tooltips, Scroll-reveal. Justification: Quick overview of proposal distribution, now with updated colors matching the new theme. Library: Chart.js/Canvas. CONFIRM NO SVG.
+        - Planificador Académico: Goal: Organize/Inform. Method: Centered flowchart on a glassmorphism card. Interaction: Scroll-reveal. Justification: Visually explains the key project with a clear, corrected layout. NO SVG/Mermaid.
+        - Infrastructure Reporting: Goal: Organize. Method: Centered flowchart on a glassmorphism card. Interaction: Scroll-reveal. Justification: Illustrates the process transparently with a corrected, modern layout. NO SVG/Mermaid.
+        - Individual Proposals: Goal: Inform. Method: Animated Glassmorphism HTML cards. Interaction: Scroll-reveal. Justification: Presents platform points in a visually consistent and engaging manner. NO SVG/Mermaid.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --primary-red: #dc2626;
+            --bright-blue: #3b82f6;
+            --bright-red: #ef4444;
+            --electric-blue: #0ea5e9;
+            --electric-red: #f87171;
+            --primary-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --secondary-gradient: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #f87171 100%);
+            --dark-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-gradient);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #1e40af, #3b82f6, #dc2626, #ef4444);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #1e40af, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .gradient-text-accent {
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .gradient-text-blue {
+            background: linear-gradient(45deg, #0ea5e9, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .gradient-text-red {
+            background: linear-gradient(45deg, #dc2626, #f87171);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            height: 400px;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(59, 130, 246, 0.1));
+            border: 2px dashed rgba(30, 64, 175, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            border-color: rgba(30, 64, 175, 0.6);
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.2), rgba(59, 130, 246, 0.2));
+        }
+
+        .candidate-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #64748b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .candidate-photo.chris {
+            border-color: var(--bright-blue);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .candidate-photo.nathalia {
+            border-color: var(--bright-red);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+        }
+
+        .vote-section {
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vote-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .vote-badge.chris {
+            background: linear-gradient(45deg, var(--primary-blue), var(--bright-blue));
+        }
+
+        .vote-badge.nathalia {
+            background: linear-gradient(45deg, var(--primary-red), var(--bright-red));
+        }
+
+        .candidate-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .candidate-number.chris {
+            background: linear-gradient(45deg, var(--primary-blue), var(--bright-blue));
+        }
+
+        .candidate-number.nathalia {
+            background: linear-gradient(45deg, var(--primary-red), var(--bright-red));
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .stagger-animation {
+            animation-delay: var(--delay, 0s);
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-blue), var(--primary-red), transparent);
+            margin: 4rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .glass-card {
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card border-0 border-b border-white/20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold gradient-text">Chris C. & Nathalia S.</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#quienes-somos" class="hover:text-blue-300 transition-colors">Equipo</a>
+                    <a href="#eje1" class="hover:text-blue-300 transition-colors">Propuestas</a>
+                    <a href="#planificador" class="hover:text-blue-300 transition-colors">Planificador</a>
+                    <a href="#compromisos" class="hover:text-blue-300 transition-colors">Compromisos</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 md:px-8 max-w-7xl pt-20">
+
+        <header class="text-center my-16 md:my-24 reveal">
+            <h1 class="text-4xl md:text-6xl font-black gradient-text">PLAN PROGRAMÁTICO 2025-2027</h1>
+            <p class="text-xl md:text-2xl font-semibold text-sky-300 mt-2">REPRESENTACIÓN ESTUDIANTIL DE DISEÑO INDUSTRIAL</p>
+        </header>
+
+        <section id="quienes-somos" class="my-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 reveal">¿QUIÉNES SOMOS?</h2>
+            <div class="text-center mb-12 max-w-3xl mx-auto reveal">
+                <p class="text-lg text-slate-200">Somos dos estudiantes que, como tú, conocemos de primera mano los problemas y el potencial de nuestro programa. Para nosotros, ser representantes no es un título, sino una oportunidad real para trabajar y cambiar las cosas que nos molestan a todos.</p>
+                <p class="mt-4 font-semibold bg-yellow-400 bg-opacity-20 text-yellow-200 rounded-lg p-3 inline-block border border-yellow-400/30">Recuerda: Solo puedes votar por uno, pero <span class="font-bold">SOMOS EL MISMO EQUIPO</span>. Quien tenga más votos será el principal y el segundo, el suplente.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Chris Alessandro - Candidato #1 -->
+                <div class="glass-card rounded-2xl p-8 reveal">
+                    <div class="text-center mb-6">
+                        <div class="relative inline-block">
+                            <div class="candidate-photo chris">
+                                <img src="images/chris.jpg" alt="Chris Alessandro" class="w-full h-full object-cover rounded-full">
+                            </div>
+                            <div class="vote-section">
+                                <div class="vote-badge chris">VOTA</div>
+                                <div class="candidate-number chris">1</div>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold gradient-text-blue mt-4">CHRIS ALESSANDRO C.</h3>
+                        <p class="text-md font-semibold text-blue-400 mb-2">Candidato #1</p>
+                        <p class="text-sm text-slate-400 mb-4">Estudiante de sexto semestre</p>
+                    </div>
+                    <p class="text-slate-200 leading-relaxed">
+                        Mi motor es simple: cuando veo un problema, no puedo evitar desarmarlo hasta entenderlo y construir una solución. 
+                        Esta convicción me llevó a liderar el desarrollo del <strong class="gradient-text-blue">"Planificador Académico D.I."</strong>. 
+                        Mi capacidad de gestión no es teórica; la puse a prueba organizando desde cero la salida a la feria de diseño, 
+                        un proceso que manejamos con total transparencia. Soy una voz que no se intimida y que, cuando se enfoca en un objetivo, 
+                        no se detiene hasta verlo cumplido.
+                    </p>
+                </div>
+
+                <!-- Nathalia Sánchez - Candidata #2 -->
+                <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay: 0.1s;">
+                    <div class="text-center mb-6">
+                        <div class="relative inline-block">
+                            <div class="candidate-photo nathalia">
+                                <span class="text-gray-500 text-4xl">📸</span>
+                                <div class="absolute inset-0 flex items-center justify-center text-xs text-gray-600 bg-white/90 rounded-full opacity-75">
+                                    Foto aquí
+                                </div>
+                            </div>
+                            <div class="vote-section">
+                                <div class="vote-badge nathalia">VOTA</div>
+                                <div class="candidate-number nathalia">2</div>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold gradient-text-red mt-4">NATHALIA SÁNCHEZ B.</h3>
+                        <p class="text-md font-semibold text-red-400 mb-2">Candidata #2</p>
+                        <p class="text-sm text-slate-400 mb-4">Estudiante de sexto semestre</p>
+                    </div>
+                    <p class="text-slate-200 leading-relaxed">
+                        Mi enfoque está en hacer las cosas de manera eficiente y clara, pensando siempre en las diferentes realidades que vivimos. 
+                        Sé que las soluciones deben ser prácticas y funcionar para todos. En momentos complicados, como en las asambleas, 
+                        siempre he buscado el camino más directo para evitar confusiones y defender lo que nos conviene a todos. 
+                        Mi papel es asegurar que <strong class="gradient-text-red">cumplamos lo que prometemos</strong> y que cada acción 
+                        se traduzca en una mejora real.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="vision" class="my-20 text-center reveal">
+             <p class="text-lg text-slate-200 max-w-3xl mx-auto mb-6">Creemos en un liderazgo que no espera, sino que construye. Queremos forjar una comunidad estudiantil:</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-2xl reveal">
+                    <span class="text-5xl">🤝</span>
+                    <h3 class="text-2xl font-bold mt-4 gradient-text-blue">UNIDA</h3>
+                    <p class="mt-2 text-slate-300">En su propósito, fomentando la colaboración y creando lazos sólidos entre cohortes.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl reveal" style="transition-delay: 0.1s;">
+                    <span class="text-5xl">💪</span>
+                    <h3 class="text-2xl font-bold mt-4 gradient-text-red">FUERTE</h3>
+                    <p class="mt-2 text-slate-300">En sus capacidades, con herramientas y oportunidades que fortalezcan nuestro perfil.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl reveal" style="transition-delay: 0.2s;">
+                    <span class="text-5xl">🚀</span>
+                    <h3 class="text-2xl font-bold mt-4 gradient-text">CAPAZ</h3>
+                    <p class="mt-2 text-slate-300">De manejar su propio desarrollo y construir un futuro sólido para el programa.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20 reveal">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text">NUESTROS TRES EJES PRINCIPALES</h2>
+            
+            <!-- Visual Axes Representation -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Eje 1: Calidad Académica -->
+                <div class="glass-card rounded-2xl p-8 text-center reveal hover:scale-105 transition-transform duration-300">
+                    <div class="text-6xl mb-6 floating-element">🎓</div>
+                    <h3 class="text-2xl font-bold gradient-text-blue mb-4">CALIDAD ACADÉMICA</h3>
+                    <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto mb-4 rounded-full"></div>
+                    <p class="text-slate-300 mb-6">Herramientas y procesos claros para tu éxito académico</p>
+                    <div class="grid grid-cols-1 gap-3 text-sm">
+                        <div class="bg-blue-500/20 rounded-lg p-3">
+                            <span class="font-semibold">🎯 Planificador Académico</span>
+                        </div>
+                        <div class="bg-blue-500/20 rounded-lg p-3">
+                            <span class="font-semibold">🚀 Salidas Académicas</span>
+                        </div>
+                        <div class="bg-blue-500/20 rounded-lg p-3">
+                            <span class="font-semibold">🤝 Conexión Profesional</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eje 2: Bienestar -->
+                <div class="glass-card rounded-2xl p-8 text-center reveal hover:scale-105 transition-transform duration-300" style="transition-delay: 0.1s;">
+                    <div class="text-6xl mb-6 floating-element">❤️</div>
+                    <h3 class="text-2xl font-bold gradient-text-red mb-4">BIENESTAR ESTUDIANTIL</h3>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto mb-4 rounded-full"></div>
+                    <p class="text-slate-300 mb-6">Espacios dignos y seguros para tu desarrollo</p>
+                    <div class="grid grid-cols-1 gap-3 text-sm">
+                        <div class="bg-red-500/20 rounded-lg p-3">
+                            <span class="font-semibold">🔍 Reporte Centralizado</span>
+                        </div>
+                        <div class="bg-red-500/20 rounded-lg p-3">
+                            <span class="font-semibold">🗣️ Seguimiento Riguroso</span>
+                        </div>
+                        <div class="bg-red-500/20 rounded-lg p-3">
+                            <span class="font-semibold">📢 Comunicación Clara</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eje 3: Comunidad -->
+                <div class="glass-card rounded-2xl p-8 text-center reveal hover:scale-105 transition-transform duration-300" style="transition-delay: 0.2s;">
+                    <div class="text-6xl mb-6 floating-element">👥</div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">COMUNIDAD ACTIVA</h3>
+                    <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-4 rounded-full"></div>
+                    <p class="text-slate-300 mb-6">Uniendo el talento para crear juntos</p>
+                    <div class="grid grid-cols-1 gap-3 text-sm">
+                        <div class="bg-purple-500/20 rounded-lg p-3">
+                            <span class="font-semibold">🏢 Centro de Estudios</span>
+                        </div>
+                        <div class="bg-purple-500/20 rounded-lg p-3">
+                            <span class="font-semibold">🎨 Integración</span>
+                        </div>
+                        <div class="bg-purple-500/20 rounded-lg p-3">
+                            <span class="font-semibold">💬 Punto de Apoyo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connection Lines Animation -->
+            <div class="flex justify-center items-center mt-12 reveal">
+                <div class="text-center">
+                    <div class="text-2xl font-bold gradient-text mb-4">IMPACTO INTEGRAL</div>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                        <div class="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-red-500"></div>
+                        <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+                        <div class="w-8 h-0.5 bg-gradient-to-r from-red-500 to-purple-500"></div>
+                        <div class="w-3 h-3 bg-purple-500 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-4">Tres ejes conectados para tu éxito universitario</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="eje1" class="my-20">
+            <div class="text-center mb-12 reveal">
+                <h3 class="text-3xl font-extrabold"><span class="text-5xl mr-4">🎓</span>EJE 1: CALIDAD ACADÉMICA Y PERMANENCIA</h3>
+                <p class="text-lg text-slate-300 mt-4 max-w-4xl mx-auto">Para que cada estudiante pueda dar lo mejor de sí, necesitamos que los procesos universitarios sean claros y nos ayuden a tener éxito. Nos enfocaremos en quitar las trabas burocráticas y fortalecer las conexiones con el mundo laboral.</p>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="glass-card p-8 rounded-2xl reveal">
+                    <h4 class="text-2xl font-bold text-sky-400 mb-4">1.1. Planificador Académico D.I.: Claridad y Control para tu Carrera</h4>
+                    <p class="mb-6 text-slate-200">La desorganización de la información sobre el pénsum es una de las principales causas de estrés. Para solucionarlo, implementaremos esta herramienta digital que ya estamos desarrollando.</p>
+                    <div class="border-2 border-dashed border-white/20 rounded-xl p-6">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+                             <div class="p-4 bg-red-500/20 rounded-lg">
+                                <p class="font-bold text-red-200">PROBLEMA</p>
+                                <p class="text-sm">Pénsum confuso y desorden</p>
+                            </div>
+                            <div class="text-2xl font-bold text-white/30">→</div>
+                            <div class="p-4 bg-blue-500/20 rounded-lg ring-2 ring-blue-400">
+                                <p class="font-bold text-sky-300">PLANIFICADOR D.I.</p>
+                                <p class="text-sm">Nuestra Herramienta</p>
+                            </div>
+                             <div class="text-2xl font-bold text-white/30">→</div>
+                             <div class="p-4 bg-green-500/20 rounded-lg">
+                                <p class="font-bold text-green-200">SOLUCIÓN</p>
+                                <p class="text-sm">Control y claridad</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center text-sm">
+                            <div class="bg-white/10 p-3 rounded-lg"><span class="mr-1">🗺️</span> Visualización Fácil</div>
+                            <div class="bg-white/10 p-3 rounded-lg"><span class="mr-1">📊</span> Seguimiento de Progreso</div>
+                            <div class="bg-white/10 p-3 rounded-lg"><span class="mr-1">📚</span> Info en un Lugar</div>
+                            <div class="bg-white/10 p-3 rounded-lg"><span class="mr-1">⚙️</span> Personalizable</div>
+                            <div class="bg-white/10 p-3 rounded-lg col-span-2 md:col-span-1 lg:col-span-1"><span class="mr-1">📄</span> Descargable en PDF</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Planner Video Section -->
+                <div class="glass-card p-8 rounded-2xl reveal mt-8" id="planificador">
+                    <h4 class="text-3xl font-bold gradient-text text-center mb-8">
+                        🎬 Videos Demostrativos del Planificador Académico
+                    </h4>
+                    <p class="text-center text-gray-300 mb-8 text-lg">
+                        Conoce todas las funciones de nuestra herramienta a través de estos videos explicativos
+                    </p>
+
+                    <!-- Video Grid -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                        <!-- Video Placeholder 1 -->
+                        <div class="video-placeholder rounded-xl p-6 text-center aspect-video flex flex-col justify-center hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-4 pulse-animation">🎬</div>
+                            <h5 class="font-bold gradient-text mb-2">Tutorial Básico</h5>
+                            <p class="text-sm text-gray-400 mb-3">Introducción al planificador y navegación básica</p>
+                            <div class="text-xs text-gray-500 bg-blue-500/20 rounded px-2 py-1">
+                                Video próximamente disponible
+                            </div>
+                        </div>
+
+                        <!-- Video Placeholder 2 -->
+                        <div class="video-placeholder rounded-xl p-6 text-center aspect-video flex flex-col justify-center hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-4 pulse-animation">📊</div>
+                            <h5 class="font-bold gradient-text mb-2">Seguimiento de Progreso</h5>
+                            <p class="text-sm text-gray-400 mb-3">Cómo usar las barras de progreso y estadísticas</p>
+                            <div class="text-xs text-gray-500 bg-purple-500/20 rounded px-2 py-1">
+                                Video próximamente disponible
+                            </div>
+                        </div>
+
+                        <!-- Video Placeholder 3 -->
+                        <div class="video-placeholder rounded-xl p-6 text-center aspect-video flex flex-col justify-center hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-4 pulse-animation">⚙️</div>
+                            <h5 class="font-bold gradient-text mb-2">Funciones Avanzadas</h5>
+                            <p class="text-sm text-gray-400 mb-3">Personalización y configuración avanzada</p>
+                            <div class="text-xs text-gray-500 bg-green-500/20 rounded px-2 py-1">
+                                Video próximamente disponible
+                            </div>
+                        </div>
+
+                        <!-- Video Placeholder 4 -->
+                        <div class="video-placeholder rounded-xl p-6 text-center aspect-video flex flex-col justify-center hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-4 pulse-animation">📱</div>
+                            <h5 class="font-bold gradient-text mb-2">Versión Móvil</h5>
+                            <p class="text-sm text-gray-400 mb-3">Uso del planificador en dispositivos móviles</p>
+                            <div class="text-xs text-gray-500 bg-pink-500/20 rounded px-2 py-1">
+                                Video próximamente disponible
+                            </div>
+                        </div>
+
+                        <!-- Video Placeholder 5 -->
+                        <div class="video-placeholder rounded-xl p-6 text-center aspect-video flex flex-col justify-center hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-4 pulse-animation">📄</div>
+                            <h5 class="font-bold gradient-text mb-2">Exportar a PDF</h5>
+                            <p class="text-sm text-gray-400 mb-3">Cómo descargar tu plan de estudios</p>
+                            <div class="text-xs text-gray-500 bg-orange-500/20 rounded px-2 py-1">
+                                Video próximamente disponible
+                            </div>
+                        </div>
+
+                        <!-- Video Placeholder 6 -->
+                        <div class="video-placeholder rounded-xl p-6 text-center aspect-video flex flex-col justify-center hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-4 pulse-animation">🔧</div>
+                            <h5 class="font-bold gradient-text mb-2">Resolución de Problemas</h5>
+                            <p class="text-sm text-gray-400 mb-3">Preguntas frecuentes y soluciones</p>
+                            <div class="text-xs text-gray-500 bg-red-500/20 rounded px-2 py-1">
+                                Video próximamente disponible
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Instructions for adding videos -->
+                    <div class="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl p-6 border border-blue-500/30">
+                        <h6 class="font-bold text-blue-300 mb-2">📝 Instrucciones para agregar videos:</h6>
+                        <ul class="text-sm text-gray-300 space-y-1">
+                            <li>• Guarda tus videos en la carpeta del proyecto</li>
+                            <li>• Reemplaza los placeholders con elementos &lt;video&gt; o &lt;iframe&gt;</li>
+                            <li>• Mantén la estructura de grid responsive</li>
+                            <li>• Los videos se mostrarán automáticamente cuando estén disponibles</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 rounded-2xl reveal">
+                        <h4 class="text-2xl font-bold text-sky-400 mb-4">1.2. Apoyo Real para Salidas Académicas</h4>
+                        <p class="text-slate-200">Las salidas académicas son clave, pero la burocracia las frena. Seremos un apoyo activo para estudiantes y profesores, ofreciendo una guía clara y acompañamiento para agilizar los trámites y asegurar que las buenas ideas se hagan realidad.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 0.1s;">
+                        <h4 class="text-2xl font-bold text-sky-400 mb-4">1.3. Apoyo para Conexión Profesional</h4>
+                        <p class="text-slate-200">Apoyaremos a la Dirección de Programa difundiendo sus actividades y haremos sondeos semestrales para identificar los intereses del estudiantado, proponiendo nuevos convenios que respondan a lo que queremos profesionalmente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="eje2" class="my-20">
+            <div class="text-center mb-12 reveal">
+                <h3 class="text-3xl font-extrabold"><span class="text-5xl mr-4">❤️</span>EJE 2: BIENESTAR Y DIGNIDAD ESTUDIANTIL</h3>
+                <p class="text-lg text-slate-300 mt-4 max-w-4xl mx-auto">Un entorno seguro y digno no es un lujo, es la base para poder aprender. Nos comprometemos a gestionar la mejora de nuestros espacios, con soluciones realistas y de impacto inmediato.</p>
+            </div>
+            <div class="glass-card p-8 rounded-2xl reveal">
+                <h4 class="text-2xl font-bold text-pink-400 mb-4">2.1. Vigilancia y Comunicación para la Infraestructura</h4>
+                <p class="mb-6 text-slate-200">Problemas como sillas rotas o moho afectan nuestra seguridad. No prometeremos arreglarlo todo de un día para otro, pero sí seremos un canal efectivo de comunicación y vigilancia.</p>
+                <div class="w-full bg-black/20 p-6 rounded-xl flex flex-col md:flex-row justify-around items-center text-center gap-4">
+                    <div class="flex-1 p-2">
+                        <div class="text-4xl mb-2">🔍</div>
+                        <h5 class="font-bold">1. Reporte Centralizado</h5>
+                        <p class="text-sm text-slate-300">Implementaremos un sistema para que cualquier estudiante reporte un problema fácilmente.</p>
+                    </div>
+                    <div class="text-3xl font-bold text-white/20 transform rotate-90 md:rotate-0">➡️</div>
+                    <div class="flex-1 p-2">
+                        <div class="text-4xl mb-2">🗣️</div>
+                        <h5 class="font-bold">2. Seguimiento Riguroso</h5>
+                        <p class="text-sm text-slate-300">Llevaremos los casos a la Jefatura de Departamento y haremos seguimiento constante.</p>
+                    </div>
+                    <div class="text-3xl font-bold text-white/20 transform rotate-90 md:rotate-0">➡️</div>
+                    <div class="flex-1 p-2">
+                        <div class="text-4xl mb-2">📢</div>
+                        <h5 class="font-bold">3. Comunicación Clara</h5>
+                        <p class="text-sm text-slate-300">Informaremos de forma transparente sobre el estado de cada solicitud para acabar con la incertidumbre.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="eje3" class="my-20">
+            <div class="text-center mb-12 reveal">
+                <h3 class="text-3xl font-extrabold"><span class="text-5xl mr-4">👥</span>EJE 3: COMUNIDAD Y PARTICIPACIÓN ACTIVA</h3>
+                <p class="text-lg text-slate-300 mt-4 max-w-4xl mx-auto">El talento de nuestro programa está fragmentado. Es hora de unirlo, de crear los espacios que nos faltan para colaborar y fortalecer nuestra identidad como una comunidad de diseñadores.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="glass-card p-8 rounded-2xl reveal">
+                    <h4 class="text-2xl font-bold gradient-text-blue mb-4">3.1. Impulso al Centro de Estudios (CED)</h4>
+                    <p class="text-slate-200">Apoyaremos la iniciativa existente para conseguir un espacio físico propio para Diseño. Un lugar para reunirnos, trabajar y estudiar, fortaleciendo nuestra identidad como comunidad creativa.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 0.1s;">
+                    <h4 class="text-2xl font-bold gradient-text-red mb-4">3.2. Fomento de la Integración</h4>
+                    <p class="text-slate-200">Organizaremos actividades como un concurso anual de diseño y otros espacios más informales para fortalecer nuestros lazos, visibilizar el talento y fomentar el compañerismo.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 0.2s;">
+                    <h4 class="text-2xl font-bold gradient-text mb-4">3.3. Creación de un Punto de Apoyo y Asesoría</h4>
+                    <p class="text-slate-200">La vida universitaria está llena de dudas. Nos comprometemos a ser un punto de referencia accesible y confiable. Estableceremos un sistema de asesoría entre compañeros, apoyados en nuestro equipo y red de contactos, para ofrecer orientación en problemas académicos y administrativos, asegurando que nadie se sienta perdido.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer id="compromisos" class="my-16 glass-card p-10 rounded-2xl text-center reveal">
+            <h2 class="text-3xl font-bold mb-6">NUESTROS COMPROMISOS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h4 class="font-bold text-sky-300 text-lg mb-2">GESTIÓN TRANSPARENTE</h4>
+                    <p class="text-slate-300 text-sm">La confianza se gana con acciones claras. Operaremos con las puertas abiertas, donde cada decisión importante será consultada y cada resultado visible.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-yellow-300 text-lg mb-2">TRABAJO CON VOCEROS</h4>
+                    <p class="text-slate-300 text-sm">Los voceros de cada cohorte son clave. Crearemos una mesa de trabajo permanente con ellos para que nuestra gestión sea un reflejo fiel de las necesidades de todo el programa.</p>
+                </div>
+                 <div>
+                    <h4 class="font-bold text-pink-300 text-lg mb-2">DEFENSA DE LA AUTONOMÍA</h4>
+                    <p class="text-slate-300 text-sm">Respetaremos y velaremos por el cumplimiento de la autonomía universitaria, garantizando que la voz de los estudiantes sea siempre un actor principal y respetado.</p>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-white/20 pt-6">
+                <p class="text-lg font-semibold">Esta no es una lista de promesas vacías. Es un plan de trabajo.</p>
+                <p class="text-2xl font-black mt-2 text-white">Sabemos que tenemos una oportunidad histórica en nuestras manos, y <span class="gradient-text">no la vamos a desperdiciar.</span></p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Enhanced scroll animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const slideLeftElements = document.querySelectorAll('.slide-in-left');
+            const slideRightElements = document.querySelectorAll('.slide-in-right');
+            
+            // Main reveal observer
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('active');
+                        }, index * 100); // Stagger animation
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Slide animations observer
+            const slideObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            // Apply observers
+            revealElements.forEach(el => revealObserver.observe(el));
+            slideLeftElements.forEach(el => slideObserver.observe(el));
+            slideRightElements.forEach(el => slideObserver.observe(el));
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Parallax effect for floating elements
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.floating-element');
+                
+                parallaxElements.forEach(element => {
+                    const speed = 0.5;
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (label.length <= maxLength) return label;
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine += (currentLine === '' ? '' : ' ') + word;
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const ctxFocus = document.getElementById('focusChart').getContext('2d');
+            new Chart(ctxFocus, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        wrapLabel('Calidad Académica y Permanencia'),
+                        wrapLabel('Bienestar y Dignidad Estudiantil'),
+                        wrapLabel('Comunidad y Participación Activa')
+                    ],
+                    datasets: [{
+                        label: 'Número de Propuestas',
+                        data: [3, 1, 3],
+                        backgroundColor: ['#38bdf8', '#f472b6', '#34d399'],
+                        borderColor: 'rgba(255, 255, 255, 0.1)',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 14, family: 'Inter, sans-serif' },
+                                color: '#cbd5e1',
+                                boxWidth: 20,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback },
+                            bodyFont: { size: 14, family: 'Inter, sans-serif' },
+                            titleFont: { size: 16, family: 'Inter, sans-serif', weight: 'bold' },
+                            backgroundColor: '#0f172a',
+                            borderColor: 'rgba(255,255,255,0.2)',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
