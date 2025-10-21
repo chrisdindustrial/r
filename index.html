@@ -196,7 +196,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 2px;
             z-index: 10;
         }
 
@@ -207,6 +207,8 @@
             font-weight: bold;
             color: white;
             text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 25;
         }
 
         .vote-badge.chris {
@@ -219,7 +221,7 @@
 
         .candidate-number {
             position: absolute;
-            top: -10px;
+            top: 20px;
             right: -10px;
             width: 40px;
             height: 40px;
@@ -234,7 +236,7 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.3);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border: 3px solid white;
-            z-index: 15;
+            z-index: 12;
         }
 
         .candidate-number.chris {
@@ -343,6 +345,14 @@
                 right: -50px;
             }
 
+            .candidate-number {
+                top: 15px;
+                right: -5px;
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
             .floating-element {
                 animation: none;
             }
@@ -437,6 +447,20 @@
 
             .vote-section {
                 right: -40px;
+                gap: 1px;
+            }
+
+            .candidate-number {
+                top: 12px;
+                right: -3px;
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+
+            .vote-badge {
+                padding: 3px 10px;
+                font-size: 0.7rem;
             }
 
             /* Hacer que los ejes sean más fáciles de leer en móvil */
@@ -962,7 +986,6 @@
 
 </body>
 </html>
-
 
 
 
