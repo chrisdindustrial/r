@@ -477,11 +477,13 @@
                         <p class="text-sm md:text-md font-semibold text-blue-600 mb-1 md:mb-2">Candidato #1</p>
                     </div>
                     <p class="text-sm md:text-base text-slate-700 leading-relaxed">
-                        Mi motor es simple: cuando veo un problema, no puedo evitar desarmarlo hasta entenderlo y construir una solución.
-                        Esta convicción me llevó a liderar el desarrollo del <strong class="gradient-text-blue">"Planificador Académico D.I."</strong>.
-                        Mi capacidad de gestión no es teórica; la puse a prueba organizando desde cero la salida a la feria de diseño,
-                        un proceso que manejamos con total transparencia. Soy una voz que no se intimida y que, cuando se enfoca en un objetivo,
-                        no se detiene hasta verlo cumplido.
+                        Soy el tipo de persona que no se puede quedar quieta. Cuando veo un problema que nos está afectando a todos, mi primer impulso es ponerme a "cacharrear" hasta encontrar una forma más simple de hacerlo.
+                        
+                        Mi mayor placer es hacer que las cosas funcionen, pero también soy honesto: las soluciones no siempre salen perfectas a la primera. A veces toca volver a desarmar, corregir, y aprender de esa falla para la próxima vez. 
+                        
+                        En estos años como miembro de una organización estudiantil, he aprendido que las ideas más geniales no sirven de nada si uno está solo. Mi experiencia me ha dado un <strong class="gradient-text-blue">equipo de trabajo real, tanto de esta carrera como de otras.</strong>
+                        
+                        Pero lo que de verdad me mueve es el <strong class="gradient-text-blue">amor por nuestra comunidad de Diseño Industrial.</strong> La satisfacción de lograr cosas que nos benefician a todos—de resolver, de guiar, de dar ese alivio a un grupo—es algo que no tiene precio. Esa es la razón por la que sigo aquí: por esa satisfacción de ver que al final, uno como estudiante también puede resolver para su comunidad.
                     </p>
                 </div>
 
@@ -501,11 +503,12 @@
                         <p class="text-sm md:text-md font-semibold text-orange-600 mb-1 md:mb-2">Candidata #2</p>
                     </div>
                     <p class="text-sm md:text-base text-slate-700 leading-relaxed">
-                        Mi enfoque está en hacer las cosas de manera eficiente y clara, pensando siempre en las diferentes realidades que vivimos.
-                        Sé que las soluciones deben ser prácticas y funcionar para todos. En momentos complicados, como en las asambleas,
-                        siempre he buscado el camino más directo para evitar confusiones y defender lo que nos conviene a todos.
-                        Mi papel es asegurar que <strong class="gradient-text-red">cumplamos lo que prometemos</strong> y que cada acción
-                        se traduzca en una mejora real.
+    Me muevo por la <strong class="gradient-text-red">justicia y la claridad.</strong> Mi mayor fortaleza es la conexión social; tengo la capacidad de escuchar y de entender las distintas realidades que vivimos, algo crucial para que las soluciones sean justas.
+    
+    Mi experiencia estudiantil me ha permitido conocer de cerca <strong class="gradient-text-red">cómo se gestionan y ejecutan actividades</strong> mediante la participación y colaboración en diferentes programas. 
+    
+    Por eso, en cualquier situación complicada, desde una asamblea hasta una reunión con directivas, mi objetivo es ser una voz clara que defiende lo que nos conviene a todos. Me apasiona ser el puente que asegura que las ideas se comuniquen sin drama ni confusiones. Mi convicción es que una buena gestión siempre empieza con una gran empatía.
+</p>
                     </p>
                 </div>
             </div>
@@ -887,11 +890,11 @@
                 });
             });
 
-            // Parallax effect for floating elements
+            // Parallax effect for floating elements (excluding main axis icons)
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.floating-element');
-                
+                const parallaxElements = document.querySelectorAll('.floating-element:not(.axis-icon)');
+
                 parallaxElements.forEach(element => {
                     const speed = 0.5;
                     element.style.transform = `translateY(${scrolled * speed}px)`;
