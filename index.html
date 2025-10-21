@@ -267,12 +267,118 @@
 
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2rem;
-                line-height: 1.2;
+                font-size: 2.5rem;
+                line-height: 1.1;
             }
-            
+
             .glass-card {
-                margin: 1rem 0;
+                margin: 0.5rem 0;
+                padding: 1rem;
+            }
+
+            .candidate-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .vote-section {
+                right: -50px;
+            }
+
+            .floating-element {
+                animation: none;
+            }
+
+            .section-divider {
+                margin: 2rem 0;
+            }
+
+            /* Mejorar navegación móvil */
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            nav .text-xl {
+                font-size: 1rem;
+            }
+
+            /* Ajustar grid de candidatos */
+            .grid-cols-1.md\\:grid-cols-2 {
+                gap: 1rem;
+            }
+
+            /* Mejorar texto en móvil */
+            .text-3xl {
+                font-size: 1.75rem;
+            }
+
+            .text-4xl {
+                font-size: 2rem;
+            }
+
+            /* Ajustar ejes principales */
+            .grid-cols-1.md\\:grid-cols-3 {
+                gap: 1.5rem;
+            }
+
+            /* Footer responsive */
+            .grid-cols-1.md\\:grid-cols-3 {
+                gap: 1.5rem;
+            }
+
+            /* Mejorar espaciado móvil */
+            .my-20 {
+                margin: 3rem 0;
+            }
+
+            .my-16 {
+                margin: 2rem 0;
+            }
+
+            /* Ajustar navegación móvil */
+            .hidden.md\\:flex {
+                display: none;
+            }
+
+            /* Mejorar navegación móvil si la necesitas */
+            nav .container {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* Asegurar que en móvil se vea perfecto */
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .candidate-photo {
+                width: 90px;
+                height: 90px;
+            }
+
+            .vote-section {
+                right: -40px;
+            }
+
+            /* Hacer que los ejes sean más fáciles de leer en móvil */
+            .text-6xl {
+                font-size: 3rem;
+            }
+
+            /* Mejorar separación entre secciones */
+            section {
+                margin-bottom: 2rem;
+            }
+
+            /* Ajustar tamaño de tarjetas de visión */
+            .glass-card.p-6 {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -280,24 +386,28 @@
 <body class="antialiased">
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-card border-0 border-b border-black/10">
-        <div class="container mx-auto px-6 py-4">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
             <div class="flex justify-between items-center">
-                <div class="text-xl font-bold gradient-text">Chris C. & Nathalia S.</div>
+                <div class="text-lg sm:text-xl font-bold gradient-text">Chris C. & Nathalia S.</div>
                 <div class="hidden md:flex space-x-6">
                     <a href="#quienes-somos" class="hover:text-blue-600 transition-colors">Equipo</a>
                     <a href="#eje1" class="hover:text-blue-600 transition-colors">Propuestas</a>
                     <a href="#planificador" class="hover:text-blue-600 transition-colors">Planificador</a>
                     <a href="#compromisos" class="hover:text-blue-600 transition-colors">Compromisos</a>
                 </div>
+                <!-- Mobile menu button - si necesitas menú hamburguesa -->
+                <div class="md:hidden">
+                    <button class="text-2xl">☰</button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container mx-auto px-4 md:px-8 max-w-7xl pt-20">
+    <div class="container mx-auto px-4 md:px-8 max-w-7xl pt-16 md:pt-20">
 
-        <header class="text-center my-16 md:my-24 reveal">
-            <h1 class="text-4xl md:text-6xl font-black gradient-text">PLAN PROGRAMÁTICO 2025-2027</h1>
-            <p class="text-xl md:text-2xl font-semibold text-blue-600 mt-2">REPRESENTACIÓN ESTUDIANTIL DE DISEÑO INDUSTRIAL</p>
+        <header class="text-center my-8 md:my-16 lg:my-24 reveal">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black gradient-text leading-tight">PLAN PROGRAMÁTICO 2025-2027</h1>
+            <p class="text-lg sm:text-xl md:text-2xl font-semibold text-blue-600 mt-2">REPRESENTACIÓN ESTUDIANTIL DE DISEÑO INDUSTRIAL</p>
         </header>
 
         <section id="quienes-somos" class="my-20">
@@ -306,12 +416,12 @@
                 <p class="text-lg text-slate-700">Somos dos estudiantes que, como tú, conocemos de primera mano los problemas y el potencial de nuestro programa. Para nosotros, ser representantes no es un título, sino una oportunidad real para trabajar y cambiar las cosas que nos molestan a todos.</p>
                 <p class="mt-4 font-semibold bg-yellow-400 bg-opacity-20 text-yellow-800 rounded-lg p-3 inline-block border border-yellow-400/30">Recuerda: Solo puedes votar por uno, pero <span class="font-bold">SOMOS EL MISMO EQUIPO</span>. Quien tenga más votos será el principal y el segundo, el suplente.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 <!-- Chris Alessandro - Candidato #1 -->
-                <div class="glass-card rounded-2xl p-8 reveal">
-                    <div class="text-center mb-6">
+                <div class="glass-card rounded-2xl p-4 md:p-8 reveal">
+                    <div class="text-center mb-4 md:mb-6">
                         <div class="relative inline-block">
-                            <div class="candidate-photo chris">
+                            <div class="candidate-photo chris mx-auto">
                                 <img src="images/chris.jpg" alt="Chris Alessandro" class="w-full h-full object-cover rounded-full">
                             </div>
                             <div class="vote-section">
@@ -319,25 +429,25 @@
                                 <div class="candidate-number chris">1</div>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold gradient-text-blue mt-4">CHRIS ALESSANDRO C.</h3>
-                        <p class="text-md font-semibold text-blue-600 mb-2">Candidato #1</p>
-                        <p class="text-sm text-slate-600 mb-4">Estudiante de sexto semestre</p>
+                        <h3 class="text-xl md:text-2xl font-bold gradient-text-blue mt-2 md:mt-4">CHRIS ALESSANDRO C.</h3>
+                        <p class="text-sm md:text-md font-semibold text-blue-600 mb-1 md:mb-2">Candidato #1</p>
+                        <p class="text-xs md:text-sm text-slate-600 mb-2 md:mb-4">Estudiante de sexto semestre</p>
                     </div>
-                    <p class="text-slate-700 leading-relaxed">
-                        Mi motor es simple: cuando veo un problema, no puedo evitar desarmarlo hasta entenderlo y construir una solución. 
-                        Esta convicción me llevó a liderar el desarrollo del <strong class="gradient-text-blue">"Planificador Académico D.I."</strong>. 
-                        Mi capacidad de gestión no es teórica; la puse a prueba organizando desde cero la salida a la feria de diseño, 
-                        un proceso que manejamos con total transparencia. Soy una voz que no se intimida y que, cuando se enfoca en un objetivo, 
+                    <p class="text-sm md:text-base text-slate-700 leading-relaxed">
+                        Mi motor es simple: cuando veo un problema, no puedo evitar desarmarlo hasta entenderlo y construir una solución.
+                        Esta convicción me llevó a liderar el desarrollo del <strong class="gradient-text-blue">"Planificador Académico D.I."</strong>.
+                        Mi capacidad de gestión no es teórica; la puse a prueba organizando desde cero la salida a la feria de diseño,
+                        un proceso que manejamos con total transparencia. Soy una voz que no se intimida y que, cuando se enfoca en un objetivo,
                         no se detiene hasta verlo cumplido.
                     </p>
                 </div>
 
                 <!-- Nathalia Sánchez - Candidata #2 -->
-                <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay: 0.1s;">
-                    <div class="text-center mb-6">
+                <div class="glass-card rounded-2xl p-4 md:p-8 reveal" style="transition-delay: 0.1s;">
+                    <div class="text-center mb-4 md:mb-6">
                         <div class="relative inline-block">
-                            <div class="candidate-photo nathalia">
-                                <span class="text-gray-500 text-4xl">📸</span>
+                            <div class="candidate-photo nathalia mx-auto">
+                                <span class="text-gray-500 text-2xl md:text-4xl">📸</span>
                                 <div class="absolute inset-0 flex items-center justify-center text-xs text-gray-600 bg-white/90 rounded-full opacity-75">
                                     Foto aquí
                                 </div>
@@ -347,38 +457,38 @@
                                 <div class="candidate-number nathalia">2</div>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold gradient-text-red mt-4">NATHALIA SÁNCHEZ B.</h3>
-                        <p class="text-md font-semibold text-orange-600 mb-2">Candidata #2</p>
-                        <p class="text-sm text-slate-600 mb-4">Estudiante de sexto semestre</p>
+                        <h3 class="text-xl md:text-2xl font-bold gradient-text-red mt-2 md:mt-4">NATHALIA SÁNCHEZ B.</h3>
+                        <p class="text-sm md:text-md font-semibold text-orange-600 mb-1 md:mb-2">Candidata #2</p>
+                        <p class="text-xs md:text-sm text-slate-600 mb-2 md:mb-4">Estudiante de sexto semestre</p>
                     </div>
-                    <p class="text-slate-700 leading-relaxed">
-                        Mi enfoque está en hacer las cosas de manera eficiente y clara, pensando siempre en las diferentes realidades que vivimos. 
-                        Sé que las soluciones deben ser prácticas y funcionar para todos. En momentos complicados, como en las asambleas, 
-                        siempre he buscado el camino más directo para evitar confusiones y defender lo que nos conviene a todos. 
-                        Mi papel es asegurar que <strong class="gradient-text-red">cumplamos lo que prometemos</strong> y que cada acción 
+                    <p class="text-sm md:text-base text-slate-700 leading-relaxed">
+                        Mi enfoque está en hacer las cosas de manera eficiente y clara, pensando siempre en las diferentes realidades que vivimos.
+                        Sé que las soluciones deben ser prácticas y funcionar para todos. En momentos complicados, como en las asambleas,
+                        siempre he buscado el camino más directo para evitar confusiones y defender lo que nos conviene a todos.
+                        Mi papel es asegurar que <strong class="gradient-text-red">cumplamos lo que prometemos</strong> y que cada acción
                         se traduzca en una mejora real.
                     </p>
                 </div>
             </div>
         </section>
 
-        <section id="vision" class="my-20 text-center reveal">
-             <p class="text-lg text-slate-700 max-w-3xl mx-auto mb-6">Creemos en un liderazgo que no espera, sino que construye. Queremos forjar una comunidad estudiantil:</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-card p-6 rounded-2xl reveal">
-                    <span class="text-5xl">🤝</span>
-                    <h3 class="text-2xl font-bold mt-4 gradient-text-blue">UNIDA</h3>
-                    <p class="mt-2 text-slate-700">En su propósito, fomentando la colaboración y creando lazos sólidos entre cohortes.</p>
+        <section id="vision" class="my-12 md:my-20 text-center reveal">
+             <p class="text-base md:text-lg text-slate-700 max-w-3xl mx-auto mb-4 md:mb-6">Creemos en un liderazgo que no espera, sino que construye. Queremos forjar una comunidad estudiantil:</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <div class="glass-card p-4 md:p-6 rounded-2xl reveal">
+                    <span class="text-4xl md:text-5xl">🤝</span>
+                    <h3 class="text-xl md:text-2xl font-bold mt-2 md:mt-4 gradient-text-blue">UNIDA</h3>
+                    <p class="mt-2 text-sm md:text-base text-slate-700">En su propósito, fomentando la colaboración y creando lazos sólidos entre cohortes.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl reveal" style="transition-delay: 0.1s;">
-                    <span class="text-5xl">💪</span>
-                    <h3 class="text-2xl font-bold mt-4 gradient-text-red">FUERTE</h3>
-                    <p class="mt-2 text-slate-700">En sus capacidades, con herramientas y oportunidades que fortalezcan nuestro perfil.</p>
+                <div class="glass-card p-4 md:p-6 rounded-2xl reveal" style="transition-delay: 0.1s;">
+                    <span class="text-4xl md:text-5xl">💪</span>
+                    <h3 class="text-xl md:text-2xl font-bold mt-2 md:mt-4 gradient-text-red">FUERTE</h3>
+                    <p class="mt-2 text-sm md:text-base text-slate-700">En sus capacidades, con herramientas y oportunidades que fortalezcan nuestro perfil.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl reveal" style="transition-delay: 0.2s;">
-                    <span class="text-5xl">🚀</span>
-                    <h3 class="text-2xl font-bold mt-4 gradient-text">CAPAZ</h3>
-                    <p class="mt-2 text-slate-700">De manejar su propio desarrollo y construir un futuro sólido para el programa.</p>
+                <div class="glass-card p-4 md:p-6 rounded-2xl reveal" style="transition-delay: 0.2s;">
+                    <span class="text-4xl md:text-5xl">🚀</span>
+                    <h3 class="text-xl md:text-2xl font-bold mt-2 md:mt-4 gradient-text">CAPAZ</h3>
+                    <p class="mt-2 text-sm md:text-base text-slate-700">De manejar su propio desarrollo y construir un futuro sólido para el programa.</p>
                 </div>
             </div>
         </section>
