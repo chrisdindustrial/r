@@ -233,12 +233,67 @@
             background: linear-gradient(45deg, var(--primary-blue), var(--bright-blue));
         }
 
-        .candidate-number.nathalia {
-            background: linear-gradient(45deg, var(--primary-orange), var(--bright-orange));
+        .vote-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: votePulse 3s ease-in-out infinite;
         }
 
-        .pulse-animation {
-            animation: pulse 2s infinite;
+        .vote-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes votePulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+        }
+
+        .vote-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .floating-decoration {
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        .vote-emote {
+            width: 80px;
+            height: 80px;
+            animation: emoteBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .vote-emote:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes emoteBounce {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            25% {
+                transform: translateY(-15px) scale(1.1);
+            }
+            50% {
+                transform: translateY(-5px) scale(1.05);
+            }
+            75% {
+                transform: translateY(-10px) scale(1.08);
+            }
+        }
+
+        .vote-emote:hover {
+            animation: emoteWiggle 0.8s ease-in-out;
+        }
+
+        @keyframes emoteWiggle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-5deg) scale(1.1); }
+            75% { transform: rotate(5deg) scale(1.1); }
         }
 
         @keyframes pulse {
@@ -337,12 +392,27 @@
             }
         }
 
-        /* Asegurar que en móvil se vea perfecto */
-        @media (max-width: 640px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
+        @media (max-width: 768px) {
+            .vote-emote {
+                width: 60px;
+                height: 60px;
             }
+
+            .vote-emote:nth-child(2) {
+                animation-delay: 0.3s;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .vote-emote {
+                width: 50px;
+                height: 50px;
+            }
+
+            .gap-6 {
+                gap: 1rem;
+            }
+        }
 
             .hero-title {
                 font-size: 2rem;
@@ -694,6 +764,89 @@
             </div>
         </footer>
 
+        <!-- Nueva sección de llamada a la votación -->
+        <section id="votacion" class="my-20 reveal">
+            <div class="glass-card p-8 md:p-12 rounded-3xl text-center relative overflow-hidden">
+                <!-- Elementos decorativos flotantes -->
+                <div class="absolute top-4 left-4 text-6xl opacity-10 floating-decoration">🗳️</div>
+                <div class="absolute top-4 right-4 text-6xl opacity-10 floating-decoration" style="animation-delay: 1s;">📋</div>
+                <div class="absolute bottom-4 left-1/4 text-4xl opacity-10 floating-decoration" style="animation-delay: 2s;">✨</div>
+                <div class="absolute bottom-4 right-1/4 text-4xl opacity-10 floating-decoration" style="animation-delay: 1.5s;">🎯</div>
+
+                <!-- Contenido principal -->
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-6">
+                        ¡ESTUDIANTE DE DISEÑO INDUSTRIAL!
+                    </h2>
+
+                    <!-- Tarjetas de candidatos con números grandes -->
+                    <div class="grid grid-cols-2 gap-6 md:gap-8 mb-8 max-w-2xl mx-auto">
+                        <!-- Candidato #1 -->
+                        <div class="vote-card glass-card p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 hover:border-blue-400 transition-all duration-300">
+                            <div class="text-6xl md:text-8xl font-black text-blue-600 mb-2 animate-pulse">#1</div>
+                            <h3 class="text-lg md:text-xl font-bold text-blue-800">CHRIS ALESSANDRO</h3>
+                            <p class="text-sm text-blue-700 mt-1">Candidato Principal</p>
+                        </div>
+
+                        <!-- Candidato #2 -->
+                        <div class="vote-card glass-card p-6 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-200 hover:border-orange-400 transition-all duration-300">
+                            <div class="text-6xl md:text-8xl font-black text-orange-600 mb-2 animate-pulse">#2</div>
+                            <h3 class="text-lg md:text-xl font-bold text-orange-800">NATHALIA SÁNCHEZ</h3>
+                            <p class="text-sm text-orange-700 mt-1">Candidata Suplente</p>
+                        </div>
+                    </div>
+
+                    <!-- Información de votación -->
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-lg">
+                        <div class="flex items-center justify-center mb-4">
+                            <span class="text-4xl mr-3">📅</span>
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-800">
+                                ESTE 28 DE OCTUBRE
+                            </h3>
+                        </div>
+
+                        <div class="flex items-center justify-center mb-6">
+                            <span class="text-4xl mr-3">📍</span>
+                            <div class="text-center">
+                                <p class="text-lg md:text-xl font-semibold text-gray-800">
+                                    DIRECCIÓN DE PROGRAMA
+                                </p>
+                                <p class="text-base md:text-lg text-gray-700">
+                                    Segundo piso del E12 - Oficina 2000
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Llamado a la acción -->
+                        <div class="bg-gradient-to-r from-blue-500 to-orange-500 rounded-xl p-4 md:p-6 text-white">
+                            <p class="text-lg md:text-xl font-bold mb-2">
+                                ¡VÓLVETE PARTE DEL CAMBIO!
+                            </p>
+                            <p class="text-sm md:text-base opacity-90">
+                                Tu voto fortalece nuestra representación estudiantil
+                            </p>
+                        </div>
+
+                        <!-- Recordatorio final -->
+                        <div class="mt-6 p-4 bg-yellow-100 rounded-lg border border-yellow-300">
+                            <p class="text-sm md:text-base font-semibold text-yellow-800">
+                                💡 <strong>Recuerda:</strong> Somos el mismo equipo.
+                                <span class="text-blue-600">Si votas #1, pídele a tu compañero que vote #2</span> y
+                                <span class="text-orange-600">viceversa</span>.
+                                ¡Juntos construimos el futuro del programa!
+                            </p>
+                        </div>
+
+                        <!-- Emotes animados finales -->
+                        <div class="mt-6 flex justify-center items-center gap-6">
+                            <img src="images/emote1.png" alt="Emote 1" class="vote-emote">
+                            <img src="images/emote2.png" alt="Emote 2" class="vote-emote">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <script>
@@ -835,4 +988,3 @@
 
 </body>
 </html>
-
